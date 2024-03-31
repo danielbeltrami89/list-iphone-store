@@ -4,7 +4,10 @@ function ProductCard(props) {
         <div className="productCard">
             <img className="card-image" src={props.image}></img>
             <h2>{props.name}</h2>
-            <h2 className="texto-h2">{props.capacity}</h2>
+            <div>
+                <h4 className="texto-h4">{props.capacity}</h4>
+                <h4 className="texto-h4">{props.color}</h4>
+            </div>
             <h3>{props.price}</h3>
             <p>{props.status}</p>
         </div>

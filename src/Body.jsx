@@ -31,11 +31,16 @@ function Body() {
             name={iphone.name} 
             price={iphone.price} 
             capacity={iphone.capacity} 
+            color={iphone.color}
             status={iphone.status}
         />
     )
 
-    return(list);
+    return(
+        <div className='contentCards'>
+            {list}
+        </div>
+    );
 }
 
 export default Body

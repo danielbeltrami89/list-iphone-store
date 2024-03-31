@@ -1,0 +1,50 @@
+[
+  {
+    "capacity": "64 GB",
+    "color": "green",
+    "image": "src/assets/ip-11.png",
+    "name": "iPhone 11",
+    "price": "R$ 2.000,00",
+    "status": "Disponível"
+  },
+  {
+    "capacity": "128 GB",
+    "color": "blue",
+    "image": "src/assets/ip-12.png",
+    "name": "iPhone 12",
+    "price": "R$ 2.500,00",
+    "status": "Disponível"
+  },
+  {
+    "capacity": "256 GB",
+    "color": "midnight",
+    "image": "src/assets/ip-13-pm.png",
+    "name": "iPhone 13 Pro Max",
+    "price": "R$ 4.000,00",
+    "status": "Disponível"
+  },
+  {
+    "capacity": "128 GB",
+    "color": "red",
+    "image": "src/assets/ip-14.png",
+    "name": "iPhone 14",
+    "price": "R$ 4.000,00",
+    "status": "Disponível"
+  },
+  {
+    "capacity": "256 GB",
+    "color": "white",
+    "image": "src/assets/ip-15.png",
+    "name": "iPhone 15",
+    "price": "R$ 5.000,00",
+    "status": "Disponível"
+  },
+  {
+    "capacity": "256 GB",
+    "color": "black",
+    "image": "src/assets/ip-15-p.png",
+    "name": "iPhone 15 Pro",
+    "price": "R$ 7.000,00",
+    "status": "Disponível"
+  }
+]
