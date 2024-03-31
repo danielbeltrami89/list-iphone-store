@@ -2,8 +2,12 @@
 function Header() {
 
     return(
-        <header>
-            <h1>Guk Store Imports</h1>
+        <header class="header-top dropshadow">
+            <div class="header-wrap">
+                <div class="header-content align-bottom">
+                <h1><span class="nobr">Guk Store Imports</span></h1>
+                </div>
+            </div>
         </header>
     );
     
