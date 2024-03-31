@@ -1,16 +1,15 @@
-import ip15Imag from './assets/ip-15.png'
 
-function ProductCard() {
-
+function ProductCard(props) {
     return(
         <div className="productCard">
-            <img className="card-image" src={ip15Imag}></img>
-            <h2 className="texto-h2">256GB</h2>
-            <h3>R$ 2.500,00</h3>
-            <p>Disponível</p>
+            <img className="card-image" src={props.image}></img>
+            <h2>{props.name}</h2>
+            <h2 className="texto-h2">{props.capacity}</h2>
+            <h3>{props.price}</h3>
+            <p>{props.status}</p>
         </div>
     );
-
+    
 }
 
 export default ProductCard
