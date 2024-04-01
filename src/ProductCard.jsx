@@ -1,7 +1,7 @@
 
 function ProductCard(props) {
     return(
-        <div className="productCard">
+        <div className="card">
             <img className="card-image" src={props.image}></img>
             <h2>{props.name}</h2>
             <div>
@@ -10,6 +10,9 @@ function ProductCard(props) {
             </div>
             <h3>{props.price}</h3>
             <p>{props.status}</p>
+            <a href="https://api.whatsapp.com/send?phone=+5511982214215&text=Olá,%20tudo%20bem?" target="_blank">
+                <button>Comprar</button>
+            </a>
         </div>
     );
     

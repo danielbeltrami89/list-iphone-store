@@ -37,7 +37,7 @@ function Body() {
     )
 
     return(
-        <div className='contentCards'>
+        <div className='cards'>
             {list}
         </div>
     );
