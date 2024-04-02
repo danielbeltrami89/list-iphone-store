@@ -32,7 +32,6 @@ function Body() {
             price={iphone.price} 
             capacity={iphone.capacity} 
             color={iphone.color}
-            status={iphone.status}
         />
     )
 
