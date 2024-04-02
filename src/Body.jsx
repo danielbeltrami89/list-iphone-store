@@ -3,7 +3,8 @@ import ProductCard from "./ProductCard";
 import { getDatabase, ref, onValue } from "firebase/database";
 import { db } from "./Utils/Firebase";
 
-function Body() {
+export default function Body() {
+
     const [dados, setDados] = useState([]);
 
     useEffect(() => {
@@ -36,10 +37,17 @@ function Body() {
     )
 
     return(
-        <div className='cards'>
+        <div style={style.cards}>
             {list}
         </div>
     );
 }
 
-export default Body
+const style = {
+      cards: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        margin: '120px 30px',
+        justifyContent: 'center'
+      }
+}
