@@ -32,7 +32,7 @@ export default function Body() {
             name={iphone.name} 
             price={iphone.price} 
             capacity={iphone.capacity} 
-            color={iphone.color}
+            colors={iphone.colors}
         />
     )
 

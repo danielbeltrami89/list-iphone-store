@@ -1,6 +1,14 @@
 import Circle from './Circle';
 
 export default function ProductCard(props) {
+
+    const colors = props.colors.map((color, index) => 
+        <Circle 
+            key={index} 
+            color={color}
+        />
+    )
+
     return(
         <div style={style.card}>
             <div style={style.container}>
@@ -10,9 +18,7 @@ export default function ProductCard(props) {
             <h2 style={style.textH2}>{props.name}</h2>
 
             <div style={style.container}>
-                <Circle color="red" />
-                <Circle color="green" />
-                <Circle color="blue" />
+                {colors}
             </div>
 
             <div style={style.container}>
