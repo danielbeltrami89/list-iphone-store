@@ -21,7 +21,7 @@ export default function ProductCard(props) {
                 {colors}
             </div>
 
-            <div style={style.container}>
+            <div style={style.labelContainer}>
                 <p style={style.label}>{props.capacity}</p>
                 <p style={style.label}>Vitrine</p>
             </div>
@@ -86,7 +86,8 @@ const style = {
 
       labelContainer: {
         display: 'flex',
-        justifyContent: 'space-between'
+        justifyContent: 'center',
+        gap: '10px',
       },
 
       label: {
@@ -96,7 +97,6 @@ const style = {
         textAlign: 'center',
         display: 'inline-block',
         padding: '4px 12px',
-        marginRight: '12px',
         marginBlock: '4px',
         fontSize: '0.9rem',
     },

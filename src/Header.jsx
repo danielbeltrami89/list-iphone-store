@@ -19,7 +19,6 @@ const headerContainer = {
     position: "absolute",
     left: "0px",
     right: "0px",
-    padding: "10px 2em",
     background: "#D2C2DA",
     boxShadow: "5px 5px 5px rgba(63, 63, 63, 0.1)",
 }
@@ -42,6 +41,5 @@ const logoImg = {
 const imageContainer = {
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center',
-    width: '70px'
+    height: '80px'
 }
