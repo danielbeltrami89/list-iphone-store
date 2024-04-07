@@ -2,7 +2,9 @@ import Circle from './Circle';
 
 export default function ProductCard(props) {
 
-    const colors = props.colors.map((color, index) => 
+    const colorsSplited = props.colors.split('; '); 
+       
+    const hexs = colorsSplited.map((color, index) => 
         <Circle 
             key={index} 
             color={color}
@@ -18,7 +20,7 @@ export default function ProductCard(props) {
             <h2 style={style.textH2}>{props.name}</h2>
 
             <div style={style.container}>
-                {colors}
+                {hexs}
             </div>
 
             <div style={style.labelContainer}>
