@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ProductCard from "./ProductCard";
 import { getDatabase, ref, onValue } from "firebase/database";
 import { db } from "./Utils/Firebase";
-import axios from 'axios'; // Import Axios
+import axios from 'axios';
 
 
 export default function Body() {
