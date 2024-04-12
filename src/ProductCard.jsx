@@ -24,11 +24,11 @@ export default function ProductCard(props) {
             </div>
 
             <div style={style.labelContainer}>
-                <p style={style.label}>{props.capacity}</p>
-                <p style={style.label}>Vitrine</p>
+                <p style={style.label}>{props.capacity} GB</p>
+                <p style={style.label}>Lacrado</p>
             </div>
 
-            <h2 style={style.textH3}>{props.price}</h2>
+            <h2 style={style.textH3}>R$ {props.price},00</h2>
             <p>{props.status}</p>
             <a href="https://api.whatsapp.com/send?phone=+5511982214215&text=Olá,%20tudo%20bem?" target="_blank">
                 <button style={style.button}>Comprar</button>
