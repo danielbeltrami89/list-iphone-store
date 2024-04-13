@@ -42,19 +42,23 @@ export default function Body() {
         return data;
     }
 
-    console.log(csvData[0])
-
-    const list = csvData.map(
-        (iphone, index) => 
-        <ProductCard 
-            key={index} 
-            image={iphone.image} 
-            name={iphone.model} 
-            price={iphone.price} 
-            capacity={iphone.capacity} 
-            colors={iphone.color}
-        />
-    )
+    let transformedResult = transformResult(csvData);
+    const list = transformedResult.map(
+        (iphone, index) => {
+            if (iphone.image != "") {
+                return(
+                <ProductCard 
+                    key={index} 
+                    image={iphone.image} 
+                    name={iphone.model} 
+                    prices={iphone.prices} 
+                    capacity={iphone.capacity} 
+                    colors={iphone.color}
+                />
+                );
+            }
+        }
+    );
 
     return(
         <div style={style.cards}>
@@ -62,6 +66,33 @@ export default function Body() {
         </div>
     );
 
+    // Função para agrupar por modelo e combinar capacidades e preços
+function transformResult(result) {
+    let groupedResult = {};
+
+    result.forEach(item => {
+        if (!groupedResult[item.model]) {
+            groupedResult[item.model] = {
+                model: item.model,
+                prices: []
+            };
+        }
+
+        groupedResult[item.model].prices.push({
+            capacity: item.capacity,
+            price: item.price
+        });
+
+        // Manter outras propriedades (imagem, status, cor) iguais para todos os itens do mesmo modelo
+        groupedResult[item.model].image = item.image;
+        groupedResult[item.model].status = item.status;
+        groupedResult[item.model].color = item.color;
+    });
+
+    return Object.values(groupedResult);
+}
+
+    
 }
 
 const style = {

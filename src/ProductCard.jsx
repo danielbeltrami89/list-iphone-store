@@ -1,9 +1,15 @@
 import Circle from './Circle';
+import React, { useState } from 'react';
 
 export default function ProductCard(props) {
+    const primaryPrice = props.prices[0].price;
+    const [priceByCapacity, setPriceByCapacity] = useState(primaryPrice);
+
+    const initialSelected = Array(5).fill(false); 
+    initialSelected[0] = true;
+    const [selected, setSelected] = useState(initialSelected);
 
     const colorsSplited = props.colors.split('; '); 
-       
     const hexs = colorsSplited.map((color, index) => 
         <Circle 
             key={index} 
@@ -11,24 +17,48 @@ export default function ProductCard(props) {
         />
     )
 
+    const handlePress = (newValue,index) => {
+        const newSelected = initialSelected.map((_, i) => i === index);
+        setSelected(newSelected);
+        setPriceByCapacity(newValue)
+    };
+
     return(
         <div style={style.card}>
             <div style={style.container}>
                 <img style={style.image} src={props.image}/>
             </div>
             
-            <h2 style={style.textH2}>{props.name}</h2>
+            <h2 style={style.textH2}>{props.name} - Lacrado</h2>
 
             <div style={style.container}>
                 {hexs}
             </div>
 
             <div style={style.labelContainer}>
-                <p style={style.label}>{props.capacity} GB</p>
-                <p style={style.label}>Lacrado</p>
+                {props.prices.map((item,index) => (
+                    <p key={index} 
+                        onClick={() => handlePress(item.price,index)} 
+                        style={{
+                            color: '#362046',
+                            backgroundColor: 'white',
+                            borderRadius: '40px',
+                            textAlign: 'center',
+                            display: 'inline-block',
+                            padding: '4px 12px',
+                            marginBlock: '4px',
+                            fontSize: '0.9rem',
+                        
+                            border: selected[index] ? '1px solid red' : '1px solid white',
+                            cursor: 'pointer',
+                        }
+                    }>
+                          {item.capacity} GB
+                    </p>
+                ))}
             </div>
 
-            <h2 style={style.textH3}>R$ {props.price},00</h2>
+            <h2 style={style.textH3}>R$ {priceByCapacity},00</h2>
             <p>{props.status}</p>
             <a href="https://api.whatsapp.com/send?phone=+5511982214215&text=Olá,%20tudo%20bem?" target="_blank">
                 <button style={style.button}>Comprar</button>
@@ -92,17 +122,6 @@ const style = {
         gap: '10px',
       },
 
-      label: {
-        color: '#362046',
-        backgroundColor: 'white',
-        borderRadius: '40px',
-        textAlign: 'center',
-        display: 'inline-block',
-        padding: '4px 12px',
-        marginBlock: '4px',
-        fontSize: '0.9rem',
-    },
-
     button: {
         backgroundColor: '#362046',
         color: 'white',
@@ -111,6 +130,5 @@ const style = {
         margin: '0 auto',
         padding: '10px',
         borderRadius: '10px',
-    }
-      
+    },
 }
