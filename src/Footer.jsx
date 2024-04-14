@@ -1,12 +1,17 @@
 
-function Footer() {
+export default function Footer() {
 
     return(
         <footer>
-            <p>&copy; {new Date().getFullYear()} Guk Store Import</p>
+            <p style={style.footer}>&copy; {new Date().getFullYear()} Guk Store Import</p>
         </footer>
     );
 
 }
 
-export default Footer
+const style = {
+    footer: {
+        color: 'white',
+        textAlign: 'center',
+    }
+}

@@ -23,10 +23,21 @@ export default function ProductCard(props) {
         setPriceByCapacity(newValue)
     };
 
+    const imageName = props.image;
+    const imagePath = "/images/";
+    const src = imagePath + imageName;
+
+    const productName = props.name;
+    const capacity = props.prices[selected.findIndex(value => value === true)].capacity;
+
+    const linkWhats = "https://api.whatsapp.com/send?phone=+5511982214215&text=";
+    const message = "Olá, tudo bem? Gostaria de comprar o produto ";
+    const whatsapp = linkWhats + message + productName + " - Lacrado - " + capacity + "GB.";
+
     return(
         <div style={style.card}>
             <div style={style.container}>
-                <img style={style.image} src={props.image}/>
+                <img style={style.image} src={src}/>
             </div>
             
             <h2 style={style.textH2}>{props.name} - Lacrado</h2>
@@ -60,8 +71,8 @@ export default function ProductCard(props) {
 
             <h2 style={style.textH3}>R$ {priceByCapacity},00</h2>
             <p>{props.status}</p>
-            <a href="https://api.whatsapp.com/send?phone=+5511982214215&text=Olá,%20tudo%20bem?" target="_blank">
-                <button style={style.button}>Comprar</button>
+            <a style={style.linkButton} href={whatsapp} target="_blank">
+                <button style={style.button}>COMPRAR</button>
             </a>
         </div>
     );
@@ -91,7 +102,8 @@ const style = {
         backgroundColor: '#D2C2DA',
         borderRadius: '10px',
         boxShadow: '5px 5px 5px rgba(63, 63, 63, 0.1)',
-        padding: '20px'
+        padding: '20px',
+        maxWidth: '450px'
       },
       '@media screen and (max-width: 1024px)': {
         card: {
@@ -113,7 +125,6 @@ const style = {
       textH3: {
         textAlign: 'center',
         marginBlock: '8px',
-
       },
 
       labelContainer: {
@@ -123,6 +134,7 @@ const style = {
       },
 
     button: {
+        textDecoration: 'none',
         backgroundColor: '#362046',
         color: 'white',
         minWidth: '90%',
@@ -130,5 +142,9 @@ const style = {
         margin: '0 auto',
         padding: '10px',
         borderRadius: '10px',
+    },
+
+    linkButton: {
+        textDecoration: 'none',
     },
 }

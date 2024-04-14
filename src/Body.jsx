@@ -45,7 +45,7 @@ export default function Body() {
     let transformedResult = transformResult(csvData);
     const list = transformedResult.map(
         (iphone, index) => {
-            if (iphone.image != "") {
+            if (iphone.image != "" && iphone.status == "DISPONIVEL") {
                 return(
                 <ProductCard 
                     key={index} 
