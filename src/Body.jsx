@@ -16,11 +16,10 @@ export default function Body() {
     const fetchCSVData = () => {
     const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRjzrX_L2MxxxDy8eZg2uq-6IfOlMaHNfdpHoc0ZWDI3CHpU6QDqER-NOeAyW-pk7ZH2fpwJPr8GeKa/pub?gid=206684609&single=true&output=csv'; // Replace with your Google Sheets CSV file URL
 
-        axios.get(csvUrl)    // Use Axios to fetch the CSV data
+        axios.get(csvUrl)
             .then((response) => {
-                const parsedCsvData = parseCSV(response.data);        // Parse the CSV data into an array of objects
-                setCsvData(parsedCsvData);        // Set the fetched data in the component's state
-                // console.log(parsedCsvData);        // Now you can work with 'csvData' in your component's state.
+                const parsedCsvData = parseCSV(response.data);  
+                setCsvData(parsedCsvData);    
             })
             .catch((error) => {
                 console.error('Error fetching CSV data:', error);
@@ -28,11 +27,11 @@ export default function Body() {
     }
 
     function parseCSV(csvText) {
-        const rows = csvText.split(/\r?\n/);        // Use a regular expression to split the CSV text into rows while handling '\r'
-        const headers = rows[0].split(',');        // Extract headers (assumes the first row is the header row)
-        const data = [];        // Initialize an array to store the parsed data
+        const rows = csvText.split(/\r?\n/);
+        const headers = rows[0].split(',');
+        const data = [];
         for (let i = 1; i < rows.length; i++) {
-            const rowData = rows[i].split(',');          // Use the regular expression to split the row while handling '\r'
+            const rowData = rows[i].split(',');
             const rowObject = {};
             for (let j = 0; j < headers.length; j++) {
                 rowObject[headers[j]] = rowData[j];
@@ -43,9 +42,12 @@ export default function Body() {
     }
 
     let transformedResult = transformResult(csvData);
+
+    console.log(transformedResult)
+
     const list = transformedResult.map(
         (iphone, index) => {
-            if (iphone.image != "" && iphone.status == "DISPONIVEL") {
+            if (iphone.image != "" && iphone.prices.some(item => item.status === 'DISPONIVEL')) {
                 return(
                 <ProductCard 
                     key={index} 
@@ -67,32 +69,33 @@ export default function Body() {
     );
 
     // Função para agrupar por modelo e combinar capacidades e preços
-function transformResult(result) {
-    let groupedResult = {};
+    function transformResult(result) {
+        let groupedResult = {};
 
-    result.forEach(item => {
-        if (!groupedResult[item.model]) {
-            groupedResult[item.model] = {
-                model: item.model,
-                prices: []
-            };
-        }
+        result.forEach(item => {
+            if (!groupedResult[item.model]) {
+                groupedResult[item.model] = {
+                    model: item.model,
+                    prices: []
+                };
+            }
 
-        groupedResult[item.model].prices.push({
-            capacity: item.capacity,
-            price: item.price
+            if (item.status === 'DISPONIVEL') {
+                groupedResult[item.model].prices.push({
+                    capacity: item.capacity,
+                    price: item.price,
+                    status: item.status,
+                });
+            }
+            
+            // Manter outras propriedades (imagem, status, cor) iguais para todos os itens do mesmo modelo
+            groupedResult[item.model].image = item.image;
+            groupedResult[item.model].color = item.color;
         });
 
-        // Manter outras propriedades (imagem, status, cor) iguais para todos os itens do mesmo modelo
-        groupedResult[item.model].image = item.image;
-        groupedResult[item.model].status = item.status;
-        groupedResult[item.model].color = item.color;
-    });
+        return Object.values(groupedResult);
+    }
 
-    return Object.values(groupedResult);
-}
-
-    
 }
 
 const style = {
